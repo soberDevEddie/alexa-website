@@ -1,0 +1,37 @@
+.product-detail {
+  padding: 4rem 1.5rem 6rem;
+}
+
+.product-detail__info {
+  padding-left: 1rem;
+}
+
+@media (min-width: 768px) {
+  .product-detail__info {
+    padding-left: 2.5rem;
+  }
+}
+
+.product-detail__price {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--gold-soft);
+  margin-bottom: 1.25rem;
+}
+
+.product-detail__desc {
+  max-width: 40ch;
+}
+
+.product-detail__details {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  border-top: 1px solid var(--hairline);
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--cream-dim);
+  font-size: 0.9rem;
+}

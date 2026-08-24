@@ -1,0 +1,27 @@
+.product-card {
+  display: block;
+  color: inherit;
+}
+
+.product-card__meta {
+  text-align: center;
+  padding-top: 1.25rem;
+}
+
+.product-card__name {
+  font-size: 1.35rem;
+  margin: 0 0 0.35rem;
+  color: var(--cream);
+  transition: color 0.15s ease;
+}
+
+.product-card:hover .product-card__name {
+  color: var(--gold-soft);
+}
+
+.product-card__price {
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  color: var(--cream-dim);
+  margin: 0;
+}

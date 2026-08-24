@@ -1,0 +1,24 @@
+.placeholder-art {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.placeholder-art.tone-dark {
+  background:
+    radial-gradient(120% 90% at 50% 30%, #1c1e26 0%, #0f1014 70%);
+  color: var(--gold);
+}
+
+.placeholder-art.tone-light {
+  background:
+    radial-gradient(120% 90% at 50% 30%, #e9e4d8 0%, #d8d2c2 75%);
+  color: #6b5a3a;
+}
+
+.placeholder-art__mark {
+  width: 62%;
+  height: 62%;
+}

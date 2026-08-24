@@ -1,0 +1,12 @@
+.about-page {
+  padding: 4rem 1.5rem 6rem;
+}
+
+.about-values {
+  border-top: 1px solid var(--hairline);
+}
+
+.about-values__title {
+  color: var(--gold-soft);
+  font-size: 1.25rem;
+}

@@ -1,0 +1,105 @@
+/* ---------------------------------------------------------------
+   Theme tokens
+   Layered on top of Bootstrap's built-in dark theme (data-bs-theme
+   is set on <html> in App.jsx). Swap these values for real brand
+   colors/fonts whenever real content replaces the placeholders.
+------------------------------------------------------------------ */
+:root {
+  --ink: #0f1014;
+  --ink-raised: #16181f;
+  --cream: #efe9db;
+  --cream-dim: #b9b3a6;
+  --gold: #c9a45c;
+  --gold-soft: #d9c496;
+  --hairline: rgba(239, 233, 219, 0.14);
+
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-body: 'EB Garamond', 'Times New Roman', serif;
+
+  /* Bootstrap overrides */
+  --bs-body-bg: var(--ink);
+  --bs-body-color: var(--cream);
+  --bs-body-font-family: var(--font-body);
+  --bs-border-color: var(--hairline);
+  --bs-primary: var(--gold);
+  --bs-primary-rgb: 201, 164, 92;
+  --bs-link-color: var(--gold-soft);
+  --bs-link-hover-color: var(--cream);
+  --bs-link-color-rgb: 217, 196, 150;
+  --bs-link-hover-color-rgb: 239, 233, 219;
+  --bs-secondary-color: var(--cream-dim);
+  --bs-emphasis-color: var(--cream);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--cream);
+}
+
+a {
+  text-decoration: none;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+}
+
+.btn-gold {
+  --bs-btn-color: var(--ink);
+  --bs-btn-bg: var(--gold);
+  --bs-btn-border-color: var(--gold);
+  --bs-btn-hover-color: var(--ink);
+  --bs-btn-hover-bg: var(--gold-soft);
+  --bs-btn-hover-border-color: var(--gold-soft);
+  --bs-btn-active-bg: var(--gold-soft);
+  --bs-btn-active-border-color: var(--gold-soft);
+  font-family: var(--font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 0;
+}
+
+.btn-outline-gold {
+  --bs-btn-color: var(--gold-soft);
+  --bs-btn-border-color: var(--gold-soft);
+  --bs-btn-hover-color: var(--ink);
+  --bs-btn-hover-bg: var(--gold-soft);
+  --bs-btn-hover-border-color: var(--gold-soft);
+  font-family: var(--font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  padding: 0.7rem 1.7rem;
+  border-radius: 0;
+}

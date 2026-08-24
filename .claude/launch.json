@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "alexa-website-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "alexa-website", "run", "dev"],
+      "port": 5173
+    }
+  ]
+}
