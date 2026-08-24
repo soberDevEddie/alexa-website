@@ -1,13 +1,13 @@
 .site-footer {
-  background: var(--ink);
-  border-top: 1px solid var(--hairline);
+  background: var(--bg);
+  border-top: 1px solid var(--border);
   padding: 4rem 0 2rem;
   margin-top: 5rem;
 }
 
 .site-footer__brand {
   font-size: 1.4rem;
-  color: var(--gold);
+  color: var(--accent);
   margin-bottom: 0.75rem;
 }
 
@@ -18,19 +18,19 @@
 }
 
 .site-footer__links a {
-  color: var(--cream);
+  color: var(--text);
   opacity: 0.85;
 }
 
 .site-footer__links a:hover {
   opacity: 1;
-  color: var(--gold-soft);
+  color: var(--accent-emphasis);
 }
 
 .site-footer__bottom {
   margin-top: 3rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--hairline);
+  border-top: 1px solid var(--border);
   font-size: 0.8rem;
-  color: var(--cream-dim);
+  color: var(--text-muted);
 }

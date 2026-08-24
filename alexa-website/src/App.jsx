@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
+import { ThemeProvider } from './context/ThemeContext.jsx'
 import { CartProvider } from './context/CartContext.jsx'
 import SiteNav from './components/Nav.jsx'
 import Footer from './components/Footer.jsx'
@@ -11,7 +12,7 @@ import NotFound from './pages/NotFound.jsx'
 
 function App() {
   return (
-    <div data-bs-theme="dark">
+    <ThemeProvider>
       <CartProvider>
         <SiteNav />
         <main>
@@ -26,7 +27,7 @@ function App() {
         </main>
         <Footer />
       </CartProvider>
-    </div>
+    </ThemeProvider>
   )
 }
 

@@ -3,10 +3,10 @@
 }
 
 .about-values {
-  border-top: 1px solid var(--hairline);
+  border-top: 1px solid var(--border);
 }
 
 .about-values__title {
-  color: var(--gold-soft);
+  color: var(--accent-emphasis);
   font-size: 1.25rem;
 }

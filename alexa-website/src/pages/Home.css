@@ -6,7 +6,7 @@
   justify-content: center;
   text-align: center;
   padding: 4rem 1.5rem;
-  color: var(--gold);
+  color: var(--accent);
 }
 
 .hero__mark {
@@ -17,7 +17,7 @@
 
 .hero__title {
   font-size: clamp(3rem, 8vw, 5.5rem);
-  color: var(--gold-soft);
+  color: var(--accent-emphasis);
   margin: 0;
 }
 
@@ -27,8 +27,8 @@
 
 .home-intro {
   padding: 6rem 0;
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .home-shop {

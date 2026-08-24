@@ -5,7 +5,8 @@
       "name": "alexa-website-dev",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "alexa-website", "run", "dev"],
-      "port": 5173
+      "port": 5173,
+      "autoPort": true
     }
   ]
 }

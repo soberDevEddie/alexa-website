@@ -11,17 +11,17 @@
 .product-card__name {
   font-size: 1.35rem;
   margin: 0 0 0.35rem;
-  color: var(--cream);
+  color: var(--text);
   transition: color 0.15s ease;
 }
 
 .product-card:hover .product-card__name {
-  color: var(--gold-soft);
+  color: var(--accent-emphasis);
 }
 
 .product-card__price {
   font-size: 0.85rem;
   letter-spacing: 0.03em;
-  color: var(--cream-dim);
+  color: var(--text-muted);
   margin: 0;
 }

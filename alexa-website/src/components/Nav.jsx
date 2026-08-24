@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Container, Nav as BsNav, Navbar, Offcanvas } from 'react-bootstrap'
 import { useCart } from '../context/cart-context.js'
+import { useTheme } from '../context/theme-context.js'
+import ThemeToggle from './ThemeToggle.jsx'
 import './Nav.css'
 
 const links = [
@@ -12,16 +14,20 @@ const links = [
 
 export default function SiteNav() {
   const { items, count } = useCart()
+  const { theme } = useTheme()
   const [showCart, setShowCart] = useState(false)
 
   return (
     <>
-      <Navbar expand="md" variant="dark" className="site-nav" sticky="top">
+      <Navbar expand="md" variant={theme} className="site-nav" sticky="top">
         <Container className="py-2">
           <Navbar.Brand as={NavLink} to="/" className="site-nav__brand">
             Alexa
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="main-nav" className="site-nav__toggle" />
+          <div className="site-nav__mobile-actions d-flex d-md-none align-items-center gap-3">
+            <ThemeToggle />
+            <Navbar.Toggle aria-controls="main-nav" className="site-nav__toggle" />
+          </div>
           <Navbar.Collapse id="main-nav">
             <BsNav className="mx-md-auto site-nav__links">
               {links.map((link) => (
@@ -35,17 +41,20 @@ export default function SiteNav() {
                 </BsNav.Link>
               ))}
             </BsNav>
-            <BsNav className="site-nav__right">
+            <BsNav className="site-nav__right align-items-md-center">
               <button type="button" className="site-nav__link site-nav__cart" onClick={() => setShowCart(true)}>
                 Cart ({count})
               </button>
+              <div className="d-none d-md-flex">
+                <ThemeToggle />
+              </div>
             </BsNav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
 
       <Offcanvas show={showCart} onHide={() => setShowCart(false)} placement="end" className="mini-cart">
-        <Offcanvas.Header closeButton closeVariant="white">
+        <Offcanvas.Header closeButton closeVariant={theme === 'dark' ? 'white' : undefined}>
           <Offcanvas.Title className="font-display">Your Cart</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>

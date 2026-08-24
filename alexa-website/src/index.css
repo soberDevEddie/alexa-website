@@ -1,34 +1,59 @@
 /* ---------------------------------------------------------------
    Theme tokens
-   Layered on top of Bootstrap's built-in dark theme (data-bs-theme
-   is set on <html> in App.jsx). Swap these values for real brand
-   colors/fonts whenever real content replaces the placeholders.
+   Values are set per data-bs-theme (applied to <html> by
+   ThemeProvider). Swap these values for real brand colors/fonts
+   whenever real content replaces the placeholders.
+
+   --bg/--surface/--text/--text-muted/--border/--accent flip
+   between themes. --accent-emphasis and --accent-fill deliberately
+   move in OPPOSITE directions per theme: emphasis is tuned for
+   contrast as text on the page background (darker on light bg,
+   lighter on dark bg), while fill is tuned to stay legible as a
+   background block behind fixed dark --accent-ink text.
 ------------------------------------------------------------------ */
 :root {
-  --ink: #0f1014;
-  --ink-raised: #16181f;
-  --cream: #efe9db;
-  --cream-dim: #b9b3a6;
-  --gold: #c9a45c;
-  --gold-soft: #d9c496;
-  --hairline: rgba(239, 233, 219, 0.14);
-
   --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
   --font-body: 'EB Garamond', 'Times New Roman', serif;
+  --accent-ink: #1b1710;
+}
 
+:root,
+[data-bs-theme='dark'] {
+  --bg: #0f1014;
+  --surface: #16181f;
+  --text: #efe9db;
+  --text-muted: #b9b3a6;
+  --border: rgba(239, 233, 219, 0.14);
+  --accent: #c9a45c;
+  --accent-emphasis: #d9c496;
+  --accent-fill: #d9c496;
+  --accent-rgb: 201, 164, 92;
+}
+
+[data-bs-theme='light'] {
+  --bg: #faf7f0;
+  --surface: #ffffff;
+  --text: #24211c;
+  --text-muted: #6e6656;
+  --border: rgba(36, 33, 28, 0.14);
+  --accent: #9c7233;
+  --accent-emphasis: #7c5a26;
+  --accent-fill: #b98a44;
+  --accent-rgb: 156, 114, 51;
+}
+
+:root {
   /* Bootstrap overrides */
-  --bs-body-bg: var(--ink);
-  --bs-body-color: var(--cream);
+  --bs-body-bg: var(--bg);
+  --bs-body-color: var(--text);
   --bs-body-font-family: var(--font-body);
-  --bs-border-color: var(--hairline);
-  --bs-primary: var(--gold);
-  --bs-primary-rgb: 201, 164, 92;
-  --bs-link-color: var(--gold-soft);
-  --bs-link-hover-color: var(--cream);
-  --bs-link-color-rgb: 217, 196, 150;
-  --bs-link-hover-color-rgb: 239, 233, 219;
-  --bs-secondary-color: var(--cream-dim);
-  --bs-emphasis-color: var(--cream);
+  --bs-border-color: var(--border);
+  --bs-primary: var(--accent);
+  --bs-primary-rgb: var(--accent-rgb);
+  --bs-link-color: var(--accent-emphasis);
+  --bs-link-hover-color: var(--text);
+  --bs-secondary-color: var(--text-muted);
+  --bs-emphasis-color: var(--text);
 }
 
 * {
@@ -38,6 +63,8 @@
 body {
   margin: 0;
   letter-spacing: 0.01em;
+  background: var(--bg);
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
 #root {
@@ -58,7 +85,7 @@ h4,
   font-family: var(--font-display);
   font-weight: 500;
   letter-spacing: 0.01em;
-  color: var(--cream);
+  color: var(--text);
 }
 
 a {
@@ -70,18 +97,18 @@ a {
   font-size: 0.72rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--gold-soft);
+  color: var(--accent-emphasis);
 }
 
 .btn-gold {
-  --bs-btn-color: var(--ink);
-  --bs-btn-bg: var(--gold);
-  --bs-btn-border-color: var(--gold);
-  --bs-btn-hover-color: var(--ink);
-  --bs-btn-hover-bg: var(--gold-soft);
-  --bs-btn-hover-border-color: var(--gold-soft);
-  --bs-btn-active-bg: var(--gold-soft);
-  --bs-btn-active-border-color: var(--gold-soft);
+  --bs-btn-color: var(--accent-ink);
+  --bs-btn-bg: var(--accent);
+  --bs-btn-border-color: var(--accent);
+  --bs-btn-hover-color: var(--accent-ink);
+  --bs-btn-hover-bg: var(--accent-fill);
+  --bs-btn-hover-border-color: var(--accent-fill);
+  --bs-btn-active-bg: var(--accent-fill);
+  --bs-btn-active-border-color: var(--accent-fill);
   font-family: var(--font-body);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -91,11 +118,11 @@ a {
 }
 
 .btn-outline-gold {
-  --bs-btn-color: var(--gold-soft);
-  --bs-btn-border-color: var(--gold-soft);
-  --bs-btn-hover-color: var(--ink);
-  --bs-btn-hover-bg: var(--gold-soft);
-  --bs-btn-hover-border-color: var(--gold-soft);
+  --bs-btn-color: var(--accent-fill);
+  --bs-btn-border-color: var(--accent-fill);
+  --bs-btn-hover-color: var(--accent-ink);
+  --bs-btn-hover-bg: var(--accent-fill);
+  --bs-btn-hover-border-color: var(--accent-fill);
   font-family: var(--font-body);
   letter-spacing: 0.08em;
   text-transform: uppercase;

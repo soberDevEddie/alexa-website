@@ -9,7 +9,9 @@
 .placeholder-art.tone-dark {
   background:
     radial-gradient(120% 90% at 50% 30%, #1c1e26 0%, #0f1014 70%);
-  color: var(--gold);
+  /* Fixed, not theme-linked: this backdrop is always near-black, so the
+     mark needs the light-on-dark gold regardless of site light/dark mode. */
+  color: #c9a45c;
 }
 
 .placeholder-art.tone-light {

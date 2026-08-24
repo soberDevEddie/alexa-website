@@ -1,12 +1,12 @@
 .site-nav {
-  background: var(--ink) !important;
-  border-bottom: 1px solid var(--hairline);
+  background: var(--bg) !important;
+  border-bottom: 1px solid var(--border);
 }
 
 .site-nav__brand {
   font-family: var(--font-display);
   font-size: 1.6rem;
-  color: var(--gold) !important;
+  color: var(--accent) !important;
   letter-spacing: 0.02em;
 }
 
@@ -18,7 +18,7 @@
   font-family: var(--font-body);
   font-size: 0.85rem;
   letter-spacing: 0.04em;
-  color: var(--cream) !important;
+  color: var(--text) !important;
   background: none;
   border: none;
   padding: 0;
@@ -28,7 +28,7 @@
 .site-nav__link:hover,
 .site-nav__link.active {
   opacity: 1;
-  color: var(--gold-soft) !important;
+  color: var(--accent-emphasis) !important;
 }
 
 .site-nav__right {
@@ -48,13 +48,13 @@
 }
 
 .site-nav__toggle {
-  border-color: var(--hairline) !important;
+  border-color: var(--border) !important;
 }
 
 .mini-cart {
-  background: var(--ink-raised) !important;
-  color: var(--cream);
-  border-left: 1px solid var(--hairline);
+  background: var(--surface) !important;
+  color: var(--text);
+  border-left: 1px solid var(--border);
   width: 22rem !important;
 }
 
@@ -71,7 +71,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 0.95rem;
-  border-bottom: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--border);
   padding-bottom: 0.75rem;
 }
 
@@ -81,5 +81,5 @@
   margin-top: 1rem;
   font-family: var(--font-display);
   font-size: 1.1rem;
-  color: var(--gold-soft);
+  color: var(--accent-emphasis);
 }

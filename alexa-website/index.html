@@ -11,6 +11,24 @@
       rel="stylesheet"
     />
     <title>Alexa &mdash; Floral Studio</title>
+    <script>
+      // Set the theme before first paint so there's no flash of the wrong
+      // theme. Kept in sync with src/context/ThemeContext.jsx.
+      (function () {
+        try {
+          var stored = localStorage.getItem('alexa-theme')
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark'
+          document.documentElement.setAttribute('data-bs-theme', theme)
+        } catch {
+          document.documentElement.setAttribute('data-bs-theme', 'dark')
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
