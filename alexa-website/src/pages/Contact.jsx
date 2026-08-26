@@ -2,13 +2,34 @@ import { useState } from 'react'
 import { Col, Container, Form, Row } from 'react-bootstrap'
 import './Contact.css'
 
-export default function Contact() {
-  const [sent, setSent] = useState(false)
+// TODO: swap in your real Formspree endpoint, e.g. "https://formspree.io/f/xxxxabcd"
+// Create one at https://formspree.io — the free tier is fine to start.
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'
 
-  const handleSubmit = (e) => {
+export default function Contact() {
+  const [status, setStatus] = useState('idle') // idle | sending | sent | error
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // No backend wired up yet — this just confirms the form works visually.
-    setSent(true)
+    setStatus('sending')
+
+    const form = e.target
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      })
+
+      if (response.ok) {
+        setStatus('sent')
+        form.reset()
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
@@ -23,30 +44,42 @@ export default function Contact() {
             </p>
           </div>
 
-          {sent ? (
+          {status === 'sent' ? (
             <div className="contact-page__sent text-center">
               <p className="font-display fs-3 mb-2">Thank you</p>
               <p className="text-body-secondary">
-                This is a placeholder confirmation &mdash; connect the form to your email or CRM
-                to receive real messages.
+                Your message has been sent. We'll get back to you soon.
               </p>
             </div>
           ) : (
             <Form onSubmit={handleSubmit} className="contact-form">
               <Form.Group className="mb-3" controlId="contactName">
                 <Form.Label>Name</Form.Label>
-                <Form.Control type="text" required placeholder="Your name" />
+                <Form.Control type="text" name="name" required placeholder="Your name" />
               </Form.Group>
               <Form.Group className="mb-3" controlId="contactEmail">
                 <Form.Label>Email</Form.Label>
-                <Form.Control type="email" required placeholder="you@example.com" />
+                <Form.Control type="email" name="email" required placeholder="you@example.com" />
               </Form.Group>
               <Form.Group className="mb-4" controlId="contactMessage">
                 <Form.Label>Message</Form.Label>
-                <Form.Control as="textarea" rows={4} required placeholder="How can we help?" />
+                <Form.Control
+                  as="textarea"
+                  name="message"
+                  rows={4}
+                  required
+                  placeholder="How can we help?"
+                />
               </Form.Group>
-              <button type="submit" className="btn btn-gold w-100">
-                Send Message
+
+              {status === 'error' && (
+                <p className="text-danger mb-3">
+                  Something went wrong sending your message. Please try again.
+                </p>
+              )}
+
+              <button type="submit" className="btn btn-gold w-100" disabled={status === 'sending'}>
+                {status === 'sending' ? 'Sending…' : 'Send Message'}
               </button>
             </Form>
           )}
