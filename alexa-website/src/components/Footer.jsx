@@ -22,7 +22,12 @@ export default function Footer() {
           <Col md={4} className="site-footer__links">
             <div className="eyebrow mb-2">Studio</div>
             <span className="text-body-secondary">123 Blossom Lane, Your City</span>
-            <span className="text-body-secondary">hello@example.com</span>
+            <a
+              href="mailto:ardon550@gmail.com"
+              className="btn btn-outline-gold btn-sm site-footer__contact-btn"
+            >
+              Contact Alexa
+            </a>
           </Col>
         </Row>
         <div className="site-footer__bottom">

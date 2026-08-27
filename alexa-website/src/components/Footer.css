@@ -27,6 +27,11 @@
   color: var(--accent-emphasis);
 }
 
+.site-footer__contact-btn {
+  align-self: flex-start;
+  margin-top: 0.25rem;
+}
+
 .site-footer__bottom {
   margin-top: 3rem;
   padding-top: 1.5rem;

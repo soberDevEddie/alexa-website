@@ -1,36 +1,28 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useForm, ValidationError } from '@formspree/react'
 import { Col, Container, Form, Row } from 'react-bootstrap'
+import { toast } from 'react-toastify'
 import './Contact.css'
 
-// TODO: swap in your real Formspree endpoint, e.g. "https://formspree.io/f/xxxxabcd"
-// Create one at https://formspree.io — the free tier is fine to start.
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'
+const FORMSPREE_FORM_ID = 'xppzarzg'
 
 export default function Contact() {
-  const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const [state, handleSubmit] = useForm(FORMSPREE_FORM_ID)
+  const navigate = useNavigate()
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setStatus('sending')
-
-    const form = e.target
-    try {
-      const response = await fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' },
-      })
-
-      if (response.ok) {
-        setStatus('sent')
-        form.reset()
-      } else {
-        setStatus('error')
-      }
-    } catch {
-      setStatus('error')
+  useEffect(() => {
+    if (state.succeeded) {
+      toast.success("Message sent — we'll get back to you soon.")
+      navigate('/thank-you')
     }
-  }
+  }, [state.succeeded, navigate])
+
+  useEffect(() => {
+    if (state.errors) {
+      toast.error('Something went wrong sending your message. Please try again.')
+    }
+  }, [state.errors])
 
   return (
     <Container className="contact-page">
@@ -44,45 +36,50 @@ export default function Contact() {
             </p>
           </div>
 
-          {status === 'sent' ? (
-            <div className="contact-page__sent text-center">
-              <p className="font-display fs-3 mb-2">Thank you</p>
-              <p className="text-body-secondary">
-                Your message has been sent. We'll get back to you soon.
-              </p>
-            </div>
-          ) : (
-            <Form onSubmit={handleSubmit} className="contact-form">
-              <Form.Group className="mb-3" controlId="contactName">
-                <Form.Label>Name</Form.Label>
-                <Form.Control type="text" name="name" required placeholder="Your name" />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="contactEmail">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" name="email" required placeholder="you@example.com" />
-              </Form.Group>
-              <Form.Group className="mb-4" controlId="contactMessage">
-                <Form.Label>Message</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  name="message"
-                  rows={4}
-                  required
-                  placeholder="How can we help?"
-                />
-              </Form.Group>
+          <Form onSubmit={handleSubmit} className="contact-form">
+            <Form.Group className="mb-3" controlId="contactName">
+              <Form.Label>Name</Form.Label>
+              <Form.Control type="text" name="name" required placeholder="Your name" />
+              <ValidationError
+                prefix="Name"
+                field="name"
+                errors={state.errors}
+                className="text-danger small mt-1 mb-0"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="contactEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control type="email" name="email" required placeholder="you@example.com" />
+              <ValidationError
+                prefix="Email"
+                field="email"
+                errors={state.errors}
+                className="text-danger small mt-1 mb-0"
+              />
+            </Form.Group>
+            <Form.Group className="mb-4" controlId="contactMessage">
+              <Form.Label>Message</Form.Label>
+              <Form.Control
+                as="textarea"
+                name="message"
+                rows={4}
+                required
+                placeholder="How can we help?"
+              />
+              <ValidationError
+                prefix="Message"
+                field="message"
+                errors={state.errors}
+                className="text-danger small mt-1 mb-0"
+              />
+            </Form.Group>
 
-              {status === 'error' && (
-                <p className="text-danger mb-3">
-                  Something went wrong sending your message. Please try again.
-                </p>
-              )}
+            <ValidationError errors={state.errors} className="text-danger mb-3" />
 
-              <button type="submit" className="btn btn-gold w-100" disabled={status === 'sending'}>
-                {status === 'sending' ? 'Sending…' : 'Send Message'}
-              </button>
-            </Form>
-          )}
+            <button type="submit" className="btn btn-gold w-100" disabled={state.submitting}>
+              {state.submitting ? 'Sending…' : 'Send Message'}
+            </button>
+          </Form>
         </Col>
       </Row>
     </Container>

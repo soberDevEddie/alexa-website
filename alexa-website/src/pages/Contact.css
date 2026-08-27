@@ -26,8 +26,3 @@
   color: var(--text-muted);
   opacity: 0.6;
 }
-
-.contact-page__sent {
-  border: 1px solid var(--border);
-  padding: 2.5rem 1.5rem;
-}
