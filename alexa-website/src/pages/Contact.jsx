@@ -14,7 +14,7 @@ export default function Contact() {
   useEffect(() => {
     if (state.succeeded) {
       toast.success("Message sent — we'll get back to you soon.")
-      navigate('/thank-you')
+      navigate('/thank-you', { replace: true, state: { fromContactForm: true } })
     }
   }, [state.succeeded, navigate])
 
